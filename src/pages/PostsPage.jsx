@@ -4,6 +4,7 @@ import Modal from '../components/Modal'
 import ImageUpload from '../components/ImageUpload'
 import TagEditor from '../components/TagEditor'
 import TranslateButton from '../components/TranslateButton'
+import MarkdownEditor from '../components/MarkdownEditor'
 
 const EMPTY = {
   title: { ru: '', en: '' },
@@ -259,13 +260,11 @@ export default function PostsPage({ notify }) {
                 label={`🌐 ← ${activeLang === 'ru' ? 'EN' : 'RU'}`}
               />
             </div>
-            <textarea
-              className="textarea"
-              rows={14}
-              style={{ fontFamily: 'ui-monospace, Menlo, monospace', fontSize: 13 }}
+            <MarkdownEditor
               value={editing.content?.[activeLang] || ''}
-              onChange={(e) => setEditing({ ...editing, content: { ...editing.content, [activeLang]: e.target.value } })}
+              onChange={(v) => setEditing({ ...editing, content: { ...editing.content, [activeLang]: v } })}
               placeholder={'# Заголовок\n\nАбзац **с жирным** и `inline code`.\n\n- список\n- ещё пункт'}
+              rows={16}
             />
           </div>
 
